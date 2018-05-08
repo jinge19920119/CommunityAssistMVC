@@ -1,0 +1,15 @@
+﻿@model CommunityAssistMVC.Models.Message
+@{
+    var header = "";
+    if (Model.messageText.StartsWith("Thanks")) {
+        header = "Donation";
+        ViewBag.Title = "Result";
+    } else {
+        header = "Sorry";
+        ViewBag.Title = "Redirecting";
+    }
+
+}
+<h2>@header</h2>
+
+<p>@Html.DisplayFor(model => Model.messageText)</p>
