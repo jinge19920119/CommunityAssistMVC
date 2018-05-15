@@ -1,0 +1,49 @@
+﻿@model CommunityAssistMVC.Models.GrantApplication
+@{
+    ViewBag.Title = "Application";
+}
+
+<h2>Grant Application</h2>
+
+@using (Html.BeginForm())
+{
+    
+    @Html.AntiForgeryToken()
+<div class="form-horizontal">
+    <h4>Grant</h4>
+    <hr />
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.GrantType, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("GrantType", (IEnumerable<SelectListItem>)ViewBag.GrantType, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.GrantApplicationKey, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("GrantReason", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.GrantApplicationReason, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.GrantApplicationReason, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("GrantAmount", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.GrantApplicationRequestAmount, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.GrantApplicationRequestAmount, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+</div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Submit" class="btn btn-default" />
+            </div>
+        </div>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
